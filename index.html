@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Wannabe Guru's Blueprint for Success (or At Least Looking Like It)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for fun vibe -->
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffb400;
+            --secondary: #22c1c3;
+            --accent: #fd1d1d;
+            --bg: #f7f7f7;
+            --text: #222;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        header {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+            padding: 2.5rem 1rem 2rem 1rem;
+            text-align: center;
+            color: #222;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .headline {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 2.5rem;
+            margin: 0 0 0.4em 0;
+            letter-spacing: 2px;
+            text-shadow: 1px 4px 8px #fff5, 0 2px 8px #ffd70066;
+        }
+        .course-name {
+            font-size: 1.35rem;
+            margin-bottom: 1.5em;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .cta-btn {
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            padding: 1em 2.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 16px #fd1d1d44;
+            transition: transform 0.1s;
+            margin-bottom: 1em;
+        }
+        .cta-btn:hover {
+            transform: scale(1.07) rotate(-2deg);
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        .hero-section {
+            width: 100vw;
+            max-width: 100%;
+            position: relative;
+            height: 350px;
+            margin-bottom: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(#22c1c366, #ffb40033), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover;
+        }
+        .guru-img {
+            position: relative;
+            z-index: 2;
+            border-radius: 50%;
+            border: 6px solid var(--primary);
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 8px 32px #0002;
+            background: #fff;
+            margin: 0 1em;
+        }
+        .guru-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 1.3rem;
+            font-family: 'Luckiest Guy', cursive;
+            text-shadow: 2px 3px 8px #000c;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1em;
+            font-family: 'Luckiest Guy', cursive;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 0 3px 8px #ffd70044;
+        }
+        ul.value-list {
+            font-size: 1.13rem;
+            line-height: 2;
+            list-style: "💡 ";
+            padding-left: 1.5em;
+            margin-bottom: 3em;
+        }
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+            justify-content: center;
+            margin-bottom: 3em;
+        }
+        .testimonial-card {
+            background: #fff;
+            border: 2px dashed var(--secondary);
+            border-radius: 20px;
+            box-shadow: 0 4px 16px #22c1c344;
+            padding: 1.5em 1em 1em 1em;
+            max-width: 260px;
+            text-align: center;
+            position: relative;
+        }
+        .testimonial-img {
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            margin-bottom: 0.55em;
+            box-shadow: 0 4px 16px #ffb40033;
+        }
+        .testimonial-name {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.2em;
+            font-size: 1.07em;
+        }
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.04em;
+            color: #444;
+        }
+        /* Pricing */
+        .pricing-section {
+            background: linear-gradient(90deg, #ffb40011 60%, #22c1c311 100%);
+            border: 2px solid var(--primary);
+            border-radius: 22px;
+            padding: 2.2em 1.5em;
+            text-align: center;
+            margin-bottom: 2.5em;
+            box-shadow: 0 6px 24px #fff1;
+            position: relative;
+        }
+        .pricing-title {
+            font-size: 2.1em;
+            font-family: 'Luckiest Guy', cursive;
+            color: var(--accent);
+            margin-bottom: 0.3em;
+        }
+        .fake-price {
+            font-size: 2em;
+            color: #888;
+            text-decoration: line-through;
+            margin-right: 0.5em;
+        }
+        .real-price {
+            font-size: 2.5em;
+            color: var(--secondary);
+            font-family: 'Luckiest Guy', cursive;
+            display: inline-block;
+            margin-bottom: 0.2em;
+        }
+        .timer {
+            font-size: 1.19em;
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: var(--accent);
+            margin: 1em 0 1.3em 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .timer-emoji {
+            font-size: 1.2em;
+        }
+        /* Footer */
+        footer {
+            font-size: 0.87em;
+            color: #888;
+            background: #fff8;
+            padding: 1.3em 2em 2em 2em;
+            text-align: center;
+            border-top: 1px solid #ffd70044;
+        }
+        /* Exaggerated emojis */
+        .emoji {
+            font-size: 1.3em;
+            vertical-align: middle;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 240px;
+            }
+            .guru-img {
+                width: 120px;
+                height: 120px;
+            }
+            .container {
+                padding: 1.2rem 0.6rem;
+            }
+            .testimonials {
+                flex-direction: column;
+                gap: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="headline">
+            🚀 Are you ready to fail spectacularly... with a smile? 🚀
+        </div>
+        <div class="course-name">
+            The Wannabe Guru's Blueprint for Success (or At Least Looking Like It)
+        </div>
+        <button class="cta-btn" onclick="scrollToPricing()">
+            Enroll Now for 99% Off (Just Kidding, It's Free... For Now) 🎉
+        </button>
+    </header>
+    <section class="hero-section">
+        <img class="guru-img" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?fit=crop&w=400&q=80" alt="Wannabe Guru - arms crossed, confident grin">
+        <div class="guru-caption">
+            Wannabe Guru: Because real success is overrated! 😎
+        </div>
+    </section>
+    <main class="container">
+        <section>
+            <div class="section-title">
+                What You'll Learn (Probably):
+            </div>
+            <ul class="value-list">
+                <li>How to manifest a fake income statement! 💰</li>
+                <li>Mastering the art of using confusing jargon to sound smart! 🧠</li>
+                <li>The 3-step “secret” formula to a passive-aggressive income stream! 😏</li>
+                <li>How to take a selfie in front of a rented Lamborghini! 🚗</li>
+                <li>Crafting a vision board that actually blocks your vision! 🖼️</li>
+                <li>Leveraging your network of cousins for LinkedIn endorsements! 🤝</li>
+            </ul>
+        </section>
+        <section>
+            <div class="section-title">
+                Satisfied* Customers!
+            </div>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <img class="testimonial-img" src="https://randomuser.me/api/portraits/men/43.jpg" alt="Barry S.">
+                    <div class="testimonial-name">Barry S., CEO of My Parent's Basement</div>
+                    <div class="testimonial-quote">"This course taught me everything I needed to know about wasting time. 5 stars!"</div>
+                </div>
+                <div class="testimonial-card">
+                    <img class="testimonial-img" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Stephanie Q.">
+                    <div class="testimonial-name">Stephanie Q., Professional Daydreamer</div>
+                    <div class="testimonial-quote">"I didn’t understand a single thing, but now I look VERY important in Zoom calls!"</div>
+                </div>
+                <div class="testimonial-card">
+                    <img class="testimonial-img" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Chad V.">
+                    <div class="testimonial-name">Chad V., Influencer (in his mind)</div>
+                    <div class="testimonial-quote">"Finally! A course that matches my ambition: none at all. Would recommend to everyone I don’t like."</div>
+                </div>
+                <div class="testimonial-card">
+                    <img class="testimonial-img" src="https://randomuser.me/api/portraits/women/12.jpg" alt="Mandy L.">
+                    <div class="testimonial-name">Mandy L., Serial Webinar Attendee</div>
+                    <div class="testimonial-quote">"I got a certificate! My cat is so proud. I think."</div>
+                </div>
+            </div>
+        </section>
+        <section id="pricing" class="pricing-section">
+            <div class="pricing-title">
+                Limited Time Offer!!! <span class="emoji">⏰</span>
+            </div>
+            <div>
+                <span class="fake-price">$9,997.00</span>
+                <span class="real-price">NOW: FREE!!!</span>
+            </div>
+            <div class="timer">
+                <span class="timer-emoji">🔥</span>
+                Offer expires in 
+                <span id="countdown"></span>!
+                <span class="timer-emoji">🔥</span>
+            </div>
+            <button class="cta-btn" onclick="alert('Congratulations! You have enrolled (in your imagination).')">
+                Enroll Now!!!
+            </button>
+        </section>
+    </main>
+    <footer>
+        Disclaimer: This course will not make you successful, rich, or happy. It is for entertainment purposes only. No refunds will be given for a free course. All rights reserved by Wannabe Guru LLC (a fictional company).
+    </footer>
+    <script>
+        // Simple fake countdown (always resets to 14:59)
+        function startCountdown(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+        window.onload = function () {
+            var duration = 14 * 60 + 59; // 14 minutes, 59 seconds
+            var display = document.getElementById('countdown');
+            startCountdown(duration, display);
+        };
+        // Smooth scroll to pricing
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
