@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>The Wannabe Guru's Blueprint for Success (or At Least Looking Like It)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Fonts for fun vibe -->
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -209,6 +208,89 @@
             font-size: 1.3em;
             vertical-align: middle;
         }
+        
+        /* --- Modal (Pop-up) Styles --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: var(--bg);
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 30px 20px;
+            border: 5px solid var(--accent);
+            width: 90%; /* Could be more or less, depending on screen size */
+            max-width: 450px;
+            border-radius: 25px;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 38px;
+            font-weight: bold;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            line-height: 1;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: var(--accent);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-header {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .modal-header .headline {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        .modal-subtext {
+            text-align: center;
+            margin-bottom: 1.5em;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        .modal-form .form-group { /* Reusing input styles */
+            margin-bottom: 1em;
+        }
+        .modal-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            color: var(--secondary);
+            font-size: 1.05rem;
+        }
+        .modal-form input {
+            padding: 0.8em;
+            width: 100%;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .modal-submit-btn {
+            margin-top: 1.5em;
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        /* End Modal Styles */
+
         @media (max-width: 768px) {
             .hero-section {
                 height: 240px;
@@ -235,8 +317,8 @@
         <div class="course-name">
             The Wannabe Guru's Blueprint for Success (or At Least Looking Like It)
         </div>
-        <button class="cta-btn" onclick="scrollToPricing()">
-            Enroll Now for 99% Off (Just Kidding, It's Free... For Now) 🎉
+        <button class="cta-btn" onclick="openModal()">
+            JOIN THE WAITING LIST AND GET 99% OFF 🎉
         </button>
     </header>
     <section class="hero-section">
@@ -292,7 +374,7 @@
             </div>
             <div>
                 <span class="fake-price">$9,997.00</span>
-                <span class="real-price">NOW: FREE!!!</span>
+                <span class="real-price">NOW: $9.99!!!</span>
             </div>
             <div class="timer">
                 <span class="timer-emoji">🔥</span>
@@ -300,7 +382,7 @@
                 <span id="countdown"></span>!
                 <span class="timer-emoji">🔥</span>
             </div>
-            <button class="cta-btn" onclick="alert('Congratulations! You have enrolled (in your imagination).')">
+            <button class="cta-btn" onclick="openModal()">
                 Enroll Now!!!
             </button>
         </section>
@@ -308,7 +390,56 @@
     <footer>
         Disclaimer: This course will not make you successful, rich, or happy. It is for entertainment purposes only. No refunds will be given for a free course. All rights reserved by Wannabe Guru LLC (a fictional company).<img src="https://iplogger.com/143Yc7.gif">
     </footer>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <div class="headline">
+                    💥 Manifest Your Enrollment! 💥
+                </div>
+            </div>
+            
+            <form action="https://formspree.io/f/xovkjdek" method="POST" class="modal-form">
+                <p class="modal-subtext">Enter your details to join the exclusive group of wannabe gurus.</p>
+                
+                <div class="form-group">
+                    <label for="modal-name">Wannabe Name:</label>
+                    <input type="text" id="modal-name" name="name" required placeholder="CryptoKing">
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-email">WannabeGuru Email:</label>
+                    <input type="email" id="modal-email" name="email" required placeholder="CryptoKing@wannabeguru.com">
+                </div>
+                
+                <button type="submit" class="cta-btn modal-submit-btn">
+                    Enroll Me Now!
+                </button>
+            </form>
+        </div>
+    </div>
     <script>
+        // Get the modal element
+        var modal = document.getElementById('signupModal');
+        
+        // Function to open the modal
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
         // Simple fake countdown (always resets to 14:59)
         function startCountdown(duration, display) {
             var timer = duration, minutes, seconds;
@@ -328,10 +459,7 @@
             var display = document.getElementById('countdown');
             startCountdown(duration, display);
         };
-        // Smooth scroll to pricing
-        function scrollToPricing() {
-            document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});
-        }
+        // Removed the unused scrollToPricing function
     </script>
 </body>
 </html>
